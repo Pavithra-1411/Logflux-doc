@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -57,18 +57,7 @@
     </div>
   </div>
 </section>
-<section id="overview" class="section section-alt">
-  <div class="container">
-    <div class="section-label">// THE PROBLEM</div>
-    <h2 class="section-title">Log management is broken at scale</h2>
-    <div class="problem-grid">
-      <div class="problem-card"><div class="problem-icon">01</div><h3>Format Fragmentation</h3><p>Every vendor ships a proprietary log format. Firewalls, routers, and endpoints each require hand-written parsers that silently break when firmware updates.</p></div>
-      <div class="problem-card"><div class="problem-icon">02</div><h3>No Evidence Integrity</h3><p>Raw log bytes are transformed before storage, destroying the cryptographic chain-of-custody required for legal admissibility and forensic investigation.</p></div>
-      <div class="problem-card"><div class="problem-icon">03</div><h3>Silent Parser Drift</h3><p>When a device firmware changes its log format, existing parsers silently emit malformed or empty fields - no alerts, no fallback, just corrupted telemetry in your SIEM.</p></div>
-      <div class="problem-card"><div class="problem-icon">04</div><h3>AI Without Guardrails</h3><p>LLM-generated parsers shipped directly to production without deterministic validation or human review introduce a new class of supply-chain vulnerability.</p></div>
-    </div>
-  </div>
-</section>
+
 <section id="how-it-works" class="section">
   <div class="container">
     <div class="section-label">// HOW IT WORKS</div>
