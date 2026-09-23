@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOGFLUX - Universal Log Pre-Processing Framework</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo"><span class="logo-bracket">[</span>LOG<span class="accent">FLUX</span><span class="logo-bracket">]</span></a>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#how-it-works">Pipeline</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#differentiators">Why Different</a></li>
+      <li><a href="#prototype">Prototype</a></li>
+      <li><a href="#feasibility">Impact</a></li>
+      <li><a href="#get-started">Get Started</a></li>
+      <li><a href="#references">References</a></li>
+      <li><a href="https://github.com/Sachin-MS-77/LOGGER" class="btn-nav" target="_blank">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+<section id="home" class="hero">
+  <canvas id="gridCanvas"></canvas>
+  <div class="hero-content container">
+    <div class="hero-badge"><span class="badge-dot"></span>Smart India Hackathon 2026 &middot; PS 26156 &middot; NTRO &middot; Team Aster2026</div>
+    <h1 class="hero-title"><span class="logo-bracket">[</span>LOG<span class="accent">FLUX</span><span class="logo-bracket">]</span></h1>
+    <p class="hero-subtitle">Universal Log Pre-Processing Framework</p>
+    <p class="hero-pitch">A <strong>zero-trust, self-healing</strong> log pre-processing pipeline that ingests logs from any network device, preserves raw bytes as <strong>tamper-evident evidence</strong>, uses <strong>AI-assisted discovery</strong> to auto-generate parsers for unknown formats, validates them in a <strong>WASM sandbox</strong> before a human approval gate, and normalizes everything into a <strong>common event schema</strong>.</p>
+    <div class="hero-actions">
+      <a href="#how-it-works" class="btn-primary">Explore the Pipeline</a>
+      <a href="https://github.com/Sachin-MS-77/LOGGER" class="btn-secondary" target="_blank">View on GitHub &rarr;</a>
+    </div>
+    <div class="hero-meta">
+      <span class="meta-tag">Blockchain &amp; Cybersecurity</span><span class="meta-sep">&middot;</span>
+      <span class="meta-tag">Python 3.12+</span><span class="meta-sep">&middot;</span>
+      <span class="meta-tag">Air-gap Native</span><span class="meta-sep">&middot;</span>
+      <span class="meta-tag">WASM Sandboxed</span>
+    </div>
+  </div>
+  <div class="hero-pipeline-wrap container">
+    <div class="pipeline-mini">
+      <div class="pm-stage">Capture</div><div class="pm-arrow">&rarr;</div>
+      <div class="pm-stage">Evidence Vault</div><div class="pm-arrow">&rarr;</div>
+      <div class="pm-stage">Fingerprint</div><div class="pm-arrow">&rarr;</div>
+      <div class="pm-stage">Discovery</div><div class="pm-arrow">&rarr;</div>
+      <div class="pm-stage">WASM Sandbox</div><div class="pm-arrow">&rarr;</div>
+      <div class="pm-stage human-gate">Human Gate &#10003;</div><div class="pm-arrow">&rarr;</div>
+      <div class="pm-stage">Signed Bundle</div><div class="pm-arrow">&rarr;</div>
+      <div class="pm-stage">Event Schema</div>
+    </div>
+  </div>
+</section>
+<section id="overview" class="section section-alt">
+  <div class="container">
+    <div class="section-label">// THE PROBLEM</div>
+    <h2 class="section-title">Log management is broken at scale</h2>
+    <div class="problem-grid">
+      <div class="problem-card"><div class="problem-icon">01</div><h3>Format Fragmentation</h3><p>Every vendor ships a proprietary log format. Firewalls, routers, and endpoints each require hand-written parsers that silently break when firmware updates.</p></div>
+      <div class="problem-card"><div class="problem-icon">02</div><h3>No Evidence Integrity</h3><p>Raw log bytes are transformed before storage, destroying the cryptographic chain-of-custody required for legal admissibility and forensic investigation.</p></div>
+      <div class="problem-card"><div class="problem-icon">03</div><h3>Silent Parser Drift</h3><p>When a device firmware changes its log format, existing parsers silently emit malformed or empty fields - no alerts, no fallback, just corrupted telemetry in your SIEM.</p></div>
+      <div class="problem-card"><div class="problem-icon">04</div><h3>AI Without Guardrails</h3><p>LLM-generated parsers shipped directly to production without deterministic validation or human review introduce a new class of supply-chain vulnerability.</p></div>
+    </div>
+  </div>
+</section>
+<section id="how-it-works" class="section">
+  <div class="container">
+    <div class="section-label">// HOW IT WORKS</div>
+    <h2 class="section-title">The Pipeline, Stage by Stage</h2>
+    <p class="section-desc">Every log byte passes through a deterministic, auditable chain. No stage can be skipped, no AI output can reach production without passing through the human approval gate.</p>
+    <div class="pipeline-full" id="pipelineFull"></div>
+    <div class="stages" id="stagesContainer"></div>
+  </div>
+</section>
+<section id="architecture" class="section section-alt">
+  <div class="container">
+    <div class="section-label">// ARCHITECTURE &amp; TECH STACK</div>
+    <h2 class="section-title">Built for today. Designed for national scale.</h2>
+    <p class="section-desc">We draw a hard line between what runs in the working prototype today and what the production-scale architecture targets. These are never blurred.</p>
+    <div class="arch-grid">
+      <div class="arch-panel proto-panel">
+        <div class="arch-panel-header">
+          <div class="arch-label proto-label">&#10003; IMPLEMENTED &mdash; Working Prototype</div>
+          <p class="arch-panel-desc">Single-node deployment. Tested against real hardware firewall/router traffic. 54-test automated suite.</p>
+        </div>
+        <div class="tech-stack-list">
+          <div class="tech-item"><div class="tech-name">Python 3.12+</div><div class="tech-role">Core runtime, pipeline orchestration, parser sandbox bridge</div></div>
+          <div class="tech-item"><div class="tech-name">Wasmtime</div><div class="tech-role">WASM/WASI execution engine for sandboxed parser validation</div></div>
+          <div class="tech-item"><div class="tech-name">Drain3</div><div class="tech-role">Log template extraction &mdash; structural discovery engine</div></div>
+          <div class="tech-item"><div class="tech-name">Qwen3 0.6B (llama.cpp / Ollama)</div><div class="tech-role">Local LLM for semantic field-name proposal &mdash; runs fully offline</div></div>
+          <div class="tech-item"><div class="tech-name">SHA-256 + Merkle Trees + Ed25519</div><div class="tech-role">Evidence integrity, tamper detection, witness quorum signing</div></div>
+          <div class="tech-item"><div class="tech-name">SQLite</div><div class="tech-role">Evidence Vault storage and provenance graph (single-node)</div></div>
+          <div class="tech-item"><div class="tech-name">Docker &amp; Docker Compose</div><div class="tech-role">Containerized deployment for reproducible setup</div></div>
+          <div class="tech-item"><div class="tech-name">Prometheus Metrics</div><div class="tech-role">Runtime telemetry, drift detection alerting, dashboard feeds</div></div>
+        </div>
+      </div>
+      <div class="arch-panel planned-panel">
+        <div class="arch-panel-header">
+          <div class="arch-label planned-label">&#9711; PLANNED &mdash; Production-Scale Architecture</div>
+          <p class="arch-panel-desc">Target architecture for national-scale deployment. Not yet implemented. Each component replaces its prototype counterpart.</p>
+        </div>
+        <div class="tech-stack-list">
+          <div class="tech-item"><div class="tech-name">Kafka / Redpanda</div><div class="tech-role">Replaces file/syslog ingest &mdash; distributed, high-throughput log streaming</div></div>
+          <div class="tech-item"><div class="tech-name">MinIO / PostgreSQL / Parquet</div><div class="tech-role">Replaces SQLite &mdash; scalable evidence vault and event lake storage</div></div>
+          <div class="tech-item"><div class="tech-name">Neo4j</div><div class="tech-role">Replaces SQLite graph &mdash; billion-edge provenance and investigation graph</div></div>
+          <div class="tech-item"><div class="tech-name">Elasticsearch / Kibana / ClickHouse</div><div class="tech-role">Replaces prototype dashboard &mdash; production SIEM query and analytics</div></div>
+        </div>
+        <div class="arch-note"><strong>Note:</strong> The core pipeline logic &mdash; Evidence Vault integrity, WASM sandbox, human approval gate, signed plugin bundles, schema normalization &mdash; is identical in both tiers. Only the storage and streaming backends scale.</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="differentiators" class="section">
+  <div class="container">
+    <div class="section-label">// WHY IT'S DIFFERENT</div>
+    <h2 class="section-title">Four design principles that separate LOGFLUX</h2>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-num">01</div>
+        <h3>AI Proposes. Humans Decide.</h3>
+        <p>The LLM and Drain3 engine produce parser proposals and nothing more. Before any AI-generated code touches production logs, it must pass deterministic WASM sandbox validation <em>and</em> explicit human analyst approval. There is no automated fast-path. The human gate is a hard architectural constraint, not a configuration option.</p>
+        <div class="diff-contrast">
+          <div class="contrast-row bad"><span class="contrast-label">Generic:</span> LLM output &rarr; production</div>
+          <div class="contrast-row good"><span class="contrast-label">LOGFLUX:</span> LLM &rarr; WASM sandbox &rarr; human review &rarr; signed bundle &rarr; production</div>
+        </div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-num">02</div>
+        <h3>Zero Raw-Data Loss by Construction</h3>
+        <p>The raw byte fork to the Evidence Vault happens <em>before</em> any parsing or transformation. Even if a parser crashes, the original bytes are intact, cryptographically hashed, and Merkle-witnessed. You can always re-parse from ground truth.</p>
+        <div class="diff-contrast">
+          <div class="contrast-row bad"><span class="contrast-label">Generic:</span> parse &rarr; store (raw discarded)</div>
+          <div class="contrast-row good"><span class="contrast-label">LOGFLUX:</span> raw vault write (atomic) &rarr; parse &rarr; store</div>
+        </div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-num">03</div>
+        <h3>Self-Healing Drift Detection</h3>
+        <p>Most log pipelines silently degrade when device firmware changes log format. LOGFLUX monitors per-parser field extraction rates via Prometheus. When rates drop below threshold, the system automatically re-routes the affected stream into discovery and alerts analysts.</p>
+        <div class="diff-contrast">
+          <div class="contrast-row bad"><span class="contrast-label">Generic:</span> drift &rarr; silent garbage in SIEM</div>
+          <div class="contrast-row good"><span class="contrast-label">LOGFLUX:</span> drift &rarr; alert &rarr; auto re-discovery &rarr; review</div>
+        </div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-num">04</div>
+        <h3>Air-Gap Native Design</h3>
+        <p>LOGFLUX is designed for classified and air-gapped environments. The LLM runs locally via llama.cpp/Ollama &mdash; no external API calls. Signed plugin bundles are single-file, self-contained, and transferable by USB without a registry or network.</p>
+        <div class="diff-contrast">
+          <div class="contrast-row bad"><span class="contrast-label">Generic:</span> cloud LLM API + plugin registry</div>
+          <div class="contrast-row good"><span class="contrast-label">LOGFLUX:</span> local LLM + signed single-file bundles, zero external deps</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="prototype" class="section section-alt">
+  <div class="container">
+    <div class="section-label">// PROTOTYPE &amp; BENCHMARKS</div>
+    <h2 class="section-title">Working prototype &mdash; tested against real hardware</h2>
+    <p class="section-desc">All benchmark numbers are as measured and reproducible via <code>scripts/benchmark.py</code>. Numbers are not rounded up or inflated.</p>
+    <div class="proto-stats">
+      <div class="stat-card"><div class="stat-num">54</div><div class="stat-label">Automated Tests</div><div class="stat-sub">Full pipeline test suite</div></div>
+      <div class="stat-card"><div class="stat-num">1-node</div><div class="stat-label">Deployment Scale</div><div class="stat-sub">Single-node Docker Compose</div></div>
+      <div class="stat-card"><div class="stat-num">Real&nbsp;HW</div><div class="stat-label">Traffic Source</div><div class="stat-sub">Hardware firewall &amp; router logs</div></div>
+      <div class="stat-card"><div class="stat-num">Qwen3</div><div class="stat-label">Local LLM</div><div class="stat-sub">0.6B params, fully offline</div></div>
+    </div>
+    <div class="benchmark-note">
+      <div class="bench-icon">!</div>
+      <div><strong>Reproducibility:</strong> All performance metrics are captured by <code>scripts/benchmark.py</code> in the repository. Run it on the same hardware to reproduce exact numbers. We do not publish raw figures here to avoid misquoting hardware-dependent measurements.</div>
+    </div>
+    <h3 class="sub-heading">Dashboard Workspaces</h3>
+    <div class="workspace-grid">
+      <div class="ws-card"><div class="ws-icon">&#8984;</div><div class="ws-name">Command Center</div><div class="ws-desc">System health, active sources, pipeline status overview</div></div>
+      <div class="ws-card"><div class="ws-icon">&rarr;</div><div class="ws-name">Event Stream</div><div class="ws-desc">Live normalized event feed with filter and drill-down</div></div>
+      <div class="ws-card"><div class="ws-icon">&#9673;</div><div class="ws-name">Sources</div><div class="ws-desc">Connected device registry, health, and fingerprint status</div></div>
+      <div class="ws-card ws-highlight"><div class="ws-icon">&#9879;</div><div class="ws-name">Parser Lab</div><div class="ws-desc">Human approval queue, parser review, sandbox test results, diff view</div></div>
+      <div class="ws-card ws-highlight"><div class="ws-icon">&#128274;</div><div class="ws-name">Evidence Vault</div><div class="ws-desc">Raw log archive, Merkle root browser, integrity verification UI</div></div>
+      <div class="ws-card"><div class="ws-icon">&#128269;</div><div class="ws-name">Investigation</div><div class="ws-desc">Provenance graph traversal, chain-of-custody export, alert tracing</div></div>
+      <div class="ws-card"><div class="ws-icon">&#9672;</div><div class="ws-name">System &amp; Outputs</div><div class="ws-desc">Prometheus metrics, plugin bundle manager, export configuration</div></div>
+    </div>
+  </div>
+</section>
+<section id="feasibility" class="section">
+  <div class="container">
+    <div class="section-label">// FEASIBILITY &amp; IMPACT</div>
+    <h2 class="section-title">Ready to deploy. Designed for the right audience.</h2>
+    <div class="feasibility-grid">
+      <div class="feas-block">
+        <h3>Technical Feasibility</h3>
+        <ul class="feas-list">
+          <li>All core components are open-source and battle-tested (Python, Wasmtime, Drain3, SQLite)</li>
+          <li>WASM sandboxing provides language-agnostic, hardware-independent parser isolation</li>
+          <li>Local LLM (Qwen3 0.6B) runs on commodity hardware &mdash; no GPU required for the prototype</li>
+          <li>Ed25519 signing is lightweight, fast, and widely supported across deployment environments</li>
+          <li>Docker Compose deployment reproduces the full stack from a single command</li>
+        </ul>
+      </div>
+      <div class="feas-block">
+        <h3>Deployment Feasibility</h3>
+        <ul class="feas-list">
+          <li>Single-node prototype deploys in minutes via <code>scripts/setup.sh</code> or Docker Compose</li>
+          <li>Air-gap native &mdash; no external network required after initial setup</li>
+          <li>Signed plugin bundles distribute via USB/physical media without a central registry</li>
+          <li>Prometheus-compatible metrics integrate with existing monitoring infrastructure</li>
+          <li>Production scale-out uses the same core pipeline with drop-in backend replacements</li>
+        </ul>
+      </div>
+      <div class="feas-block">
+        <h3>Compliance Feasibility</h3>
+        <ul class="feas-list">
+          <li>SHA-256 + Merkle + Ed25519 chain-of-custody supports NIST SP 800-92 requirements</li>
+          <li>Raw byte preservation satisfies evidence integrity for legal admissibility</li>
+          <li>RFC 5848 alignment for cryptographic signing of syslog messages</li>
+          <li>Human approval gate creates an auditable record for every parser decision</li>
+          <li>Zero raw-data loss policy aligns with forensic and regulatory retention requirements</li>
+        </ul>
+      </div>
+    </div>
+    <h3 class="sub-heading">Impact by Audience</h3>
+    <div class="table-wrapper">
+      <table class="impact-table">
+        <thead><tr><th>Audience</th><th>Primary Benefit</th><th>Key Features Used</th></tr></thead>
+        <tbody>
+          <tr><td><strong>SOC / Security Teams</strong></td><td>Uniform event schema across all devices; no per-vendor parser maintenance</td><td>Universal Event Schema, Drift Detection, Event Stream</td></tr>
+          <tr><td><strong>Forensics &amp; Compliance Teams</strong></td><td>Cryptographically verified raw evidence for every parsed event, chain-of-custody export</td><td>Evidence Vault, Merkle proofs, Ed25519 signing, Investigation</td></tr>
+          <tr><td><strong>National Security / Defence Agencies</strong></td><td>Air-gap-native pipeline with no external dependencies; classified-environment safe</td><td>Local LLM, Signed Bundles, WASM isolation, zero external network</td></tr>
+          <tr><td><strong>AI/ML &amp; Threat-Hunting Teams</strong></td><td>Clean, schema-normalized log corpus with provenance metadata for model training</td><td>OCSF/ECS schema, Provenance Graph, Parser Lab, Behavioral Discovery</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section id="get-started" class="section section-alt">
+  <div class="container">
+    <div class="section-label">// GET STARTED</div>
+    <h2 class="section-title">Up and running in minutes</h2>
+    <div class="gs-tabs" id="gsTabs">
+      <button class="gs-tab active" data-tab="linux">macOS / Linux</button>
+      <button class="gs-tab" data-tab="windows">Windows (PowerShell)</button>
+      <button class="gs-tab" data-tab="docker">Docker Compose</button>
+    </div>
+    <div id="tab-linux" class="gs-panel active">
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+        <pre><code id="code-linux"># 1. Clone the repository
+git clone https://github.com/Sachin-MS-77/LOGGER.git
+cd LOGGER
+
+# 2. Run the setup script (creates venv, installs deps, pulls Qwen3 0.6B)
+chmod +x scripts/setup.sh
+./scripts/setup.sh
+
+# 3. Start the pipeline
+source .venv/bin/activate
+python -m logflux run
+
+# 4. (Optional) Run the test suite
+python -m pytest tests/ -v
+
+# 5. (Optional) Run benchmarks
+python scripts/benchmark.py</code></pre>
+      </div>
+    </div>
+    <div id="tab-windows" class="gs-panel">
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">powershell</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+        <pre><code id="code-windows"># 1. Clone the repository
+git clone https://github.com/Sachin-MS-77/LOGGER.git
+cd LOGGER
+
+# 2. Create and activate virtual environment
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Pull local LLM (requires Ollama installed)
+ollama pull qwen3:0.6b
+
+# 5. Start the pipeline
+python -m logflux run
+
+# 6. (Optional) Run the test suite
+python -m pytest tests/ -v</code></pre>
+      </div>
+    </div>
+    <div id="tab-docker" class="gs-panel">
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">bash</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+        <pre><code id="code-docker"># 1. Clone the repository
+git clone https://github.com/Sachin-MS-77/LOGGER.git
+cd LOGGER
+
+# 2. Start all services (pipeline + dashboard + Prometheus)
+docker compose up --build
+
+# Dashboard available at http://localhost:8080
+
+# 3. Tear down
+docker compose down</code></pre>
+      </div>
+    </div>
+    <div class="gs-links">
+      <a href="https://github.com/Sachin-MS-77/LOGGER" class="gs-link" target="_blank">Full README on GitHub &rarr;</a>
+      <a href="https://github.com/Sachin-MS-77/LOGGER/blob/main/scripts/benchmark.py" class="gs-link" target="_blank">scripts/benchmark.py &rarr;</a>
+      <a href="https://github.com/Sachin-MS-77/LOGGER/tree/main/tests" class="gs-link" target="_blank">Test Suite (54 tests) &rarr;</a>
+    </div>
+  </div>
+</section>
+<section id="references" class="section">
+  <div class="container">
+    <div class="section-label">// RESEARCH &amp; REFERENCES</div>
+    <h2 class="section-title">Standing on peer-reviewed foundations</h2>
+    <div class="refs-grid">
+      <div class="ref-group">
+        <h3 class="ref-group-title">Academic Papers</h3>
+        <div class="ref-list">
+          <div class="ref-item"><div class="ref-badge">SANER 2025</div><div class="ref-content"><div class="ref-title">Qin et al. &mdash; Log Parsing with Drain (Extended)</div><div class="ref-venue">IEEE SANER 2025</div><div class="ref-use">Informs Drain3 configuration and template merging in the Structural Discovery engine.</div></div></div>
+          <div class="ref-item"><div class="ref-badge">ICWS 2017</div><div class="ref-content"><div class="ref-title">An Evaluation Study on Log Parsing and Its Use in Log Mining</div><div class="ref-venue">He, P., Zhu, J., Zheng, Z., Lyu, M. R. &mdash; IEEE ICWS 2017</div><div class="ref-use">Foundational Drain algorithm on which Drain3 is based.</div></div></div>
+          <div class="ref-item"><div class="ref-badge">ISSRE 2020</div><div class="ref-content"><div class="ref-title">Loghub: A Large Collection of System Log Datasets for AI-driven Log Analytics</div><div class="ref-venue">Zhu, J. et al. &mdash; IEEE ISSRE 2020</div><div class="ref-use">Benchmark dataset collection for validating the Discovery Engine across diverse log formats.</div></div></div>
+        </div>
+      </div>
+      <div class="ref-group">
+        <h3 class="ref-group-title">Standards &amp; Specifications</h3>
+        <div class="ref-list">
+          <div class="ref-item"><div class="ref-badge">NIST</div><div class="ref-content"><div class="ref-title">NIST SP 800-92 &mdash; Guide to Computer Security Log Management</div><div class="ref-use">Compliance framework for log retention, integrity, and chain-of-custody in the Evidence Vault.</div></div></div>
+          <div class="ref-item"><div class="ref-badge">RFC 5424</div><div class="ref-content"><div class="ref-title">The Syslog Protocol &mdash; Gerhards, R. (IETF, 2009)</div><div class="ref-use">Structured data and severity conventions for syslog ingestion and normalization.</div></div></div>
+          <div class="ref-item"><div class="ref-badge">RFC 5848</div><div class="ref-content"><div class="ref-title">Signed Syslog Messages &mdash; Kelsey, J., Callas, J., Clemm, A. (IETF, 2010)</div><div class="ref-use">Alignment target for cryptographic signing conventions in the Evidence Vault witness quorum.</div></div></div>
+          <div class="ref-item"><div class="ref-badge">OTel</div><div class="ref-content"><div class="ref-title">OpenTelemetry Logs Data Model &mdash; CNCF</div><div class="ref-use">Field naming conventions and severity mapping inform the Universal Event Schema design.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-left">
+      <div class="footer-logo"><span class="logo-bracket">[</span>LOG<span class="accent">FLUX</span><span class="logo-bracket">]</span></div>
+      <div class="footer-sub">Universal Log Pre-Processing Framework</div>
+      <div class="footer-meta">Smart India Hackathon 2026 &middot; PS 26156 &middot; NTRO &middot; Team Aster2026</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-theme">Theme: Blockchain &amp; Cybersecurity</div>
+      <a href="https://github.com/Sachin-MS-77/LOGGER" class="footer-link" target="_blank">GitHub Repository &rarr;</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">Built for SIH 2026. All prototype capabilities are as implemented and tested. Production-scale architecture items are explicitly marked as planned targets.</div>
+</footer>
+<script src="js/pipeline.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
